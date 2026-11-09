@@ -1,0 +1,5 @@
+# Solo se versiona el sitio; fotos, videos y archivos de trabajo quedan fuera
+*
+!index.html
+!README.md
+!.gitignore
