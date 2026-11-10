@@ -359,9 +359,9 @@ li:hover>.dd,li:focus-within>.dd{opacity:1;visibility:visible;transform:none}
 .tl{position:relative;max-width:none;width:min(1400px,calc(100vw - 48px));left:50%;transform:translateX(-50%);margin:0}
 .ti>h3,.ti>p{max-width:400px}
 .ti:nth-child(odd)>h3,.ti:nth-child(odd)>p{margin-left:auto}
-.tl::before{content:"";position:absolute;left:56%;top:0;bottom:0;width:4px;margin-left:-2px;background:linear-gradient(var(--blue-l),var(--blue-d) 70%,var(--red));border-radius:2px}
-.ti{position:relative;width:56%;padding:0 44px 44px 0;text-align:right}
-.ti:nth-child(even){width:44%;margin-left:56%;padding:0 0 44px 44px;text-align:left}
+.tl::before{content:"";position:absolute;left:45%;top:0;bottom:0;width:4px;margin-left:-2px;background:linear-gradient(var(--blue-l),var(--blue-d) 70%,var(--red));border-radius:2px}
+.ti{position:relative;width:45%;padding:0 44px 44px 0;text-align:right}
+.ti:nth-child(even){width:55%;margin-left:45%;padding:0 0 44px 44px;text-align:left}
 .ti::after{content:"";position:absolute;right:-11px;top:6px;width:22px;height:22px;border-radius:50%;background:#fff;border:5px solid var(--red);box-shadow:0 0 0 6px rgba(226,50,43,.15)}
 .ti:nth-child(even)::after{right:auto;left:-11px}
 .ti .yr{display:inline-block;background:var(--grad2);color:#fff;font-weight:800;padding:3px 14px;border-radius:30px;font-size:14px;letter-spacing:.05em}
@@ -369,8 +369,9 @@ li:hover>.dd,li:focus-within>.dd{opacity:1;visibility:visible;transform:none}
 .ti p{margin:0;color:var(--muted)}
 /* Fotos de la historia: marco blanco fino, borde y sombra suaves */
 /* Fotos de la historia: chicas, al costado del texto; cada una con el alto del bloque de texto */
-.ti-row{display:grid;grid-template-columns:minmax(0,220px) minmax(0,220px) 282px;justify-content:end;gap:8px;margin-top:10px}
+.ti-row{display:grid;grid-template-columns:220px 220px 282px;justify-content:end;gap:8px;margin-top:10px}
 .ti-row .ph1{grid-column:1;grid-row:1}.ti-row .ph2{grid-column:2;grid-row:1}.ti-row .ti-txt{grid-column:3;grid-row:1;margin-left:14px}
+@media(min-width:901px){.ti-row .ph1,.ti-row .ph2{left:3mm}}
 .ti-txt h3{margin-top:0}
 .ti-ph{position:relative;margin:0;min-height:0;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 28px -22px rgba(0,40,80,.5)}
 .ti-ph img{position:absolute;inset:2.5px;width:calc(100% - 5px);height:calc(100% - 5px);object-fit:cover;border-radius:9.5px;filter:saturate(.9)}
@@ -379,12 +380,14 @@ li:hover>.dd,li:focus-within>.dd{opacity:1;visibility:visible;transform:none}
 .ti-row.der .ti-txt{grid-column:1;grid-row:1;margin:0 14px 0 0}
 .ti-row.der .ti-ph{grid-column:2;grid-row:1;align-self:start;aspect-ratio:3/4}
 .ti-row.der .ti-ph.ph3{aspect-ratio:1/1;margin-top:calc(-50% + 34px)}
-.ti-row.par{grid-template-columns:repeat(2,minmax(0,244px));row-gap:14px}
-.ti-row.par .ti-txt{grid-column:1/-1;margin:0}
-.ti-row.par .ph5{grid-column:1;grid-row:2}.ti-row.par .ph6{grid-column:2;grid-row:2}
+.ti-row.par{grid-template-columns:282px 183px 183px;column-gap:8px;align-items:center;justify-content:start}
+/* la línea de la historia termina justo donde terminan las fotos de "Hoy" */
+.tl>.ti:last-child{padding-bottom:0}
+.ti-row.par .ti-txt{grid-column:1;grid-row:1;margin:0 6px 0 0}
+.ti-row.par .ph5{grid-column:2;grid-row:1;align-self:center}.ti-row.par .ph6{grid-column:3;grid-row:1;align-self:center}
 
 /* Marcas */
-.bgrid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.bgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:14px}
 .btile{position:relative;display:grid;place-items:center;height:104px;border:1px solid var(--line);border-radius:var(--r);background:#fff;overflow:hidden;cursor:pointer;text-decoration:none;
   transition:transform .3s,box-shadow .3s,border-color .3s}
 .btile::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .35s;
@@ -418,6 +421,34 @@ li:hover>.dd,li:focus-within>.dd{opacity:1;visibility:visible;transform:none}
 
 /* Contacto */
 .cgrid2{display:grid;grid-template-columns:1.1fr .9fr;gap:36px}
+/* Contacto y Ubicación en una sola fila: [formulario][redes] | [datos][mapa], recuadros compactos (-15%) */
+.cu .wrap{max-width:1440px}
+.cu-row{display:grid;grid-template-columns:1fr 1fr;column-gap:28px;align-items:stretch}
+.cu-col{display:grid;min-width:0}
+.cu .sec-head{margin:0 auto 36px}
+.cu-boxes{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;align-items:stretch;min-width:0}
+.cu-u .cu-boxes{grid-template-columns:1.25fr 1fr}
+.cu .form{padding:22px}
+.cu .form .two{grid-template-columns:1fr;gap:0}
+.cu .field{margin-bottom:12px}
+.cu .field input,.cu .field textarea{padding:9px 12px;font-size:15px}
+.cu .field textarea{min-height:96px}
+.cu .fbtns{gap:8px}
+.cu .fbtns .btn{flex:1 1 100%;justify-content:center}
+.cu .side{grid-auto-rows:1fr;align-content:stretch;gap:10px}
+.cu .chan{padding:10px 12px;gap:11px;min-width:0}
+.cu .chan:hover{transform:translateX(4px)}
+.cu .chan .ci2{width:40px;height:40px;border-radius:11px}
+.cu .chan .ci2 .ic{width:20px;height:20px}
+.cu .chan b{font-size:15px}
+.cu .chan span{font-size:12.5px;overflow-wrap:break-word}
+.cu .chan>div:last-child{min-width:0}
+.cu .infocard{padding:20px;align-self:center}
+.cu .infocard h3{font-size:18px;margin-bottom:8px}
+.cu .irow{padding:10px 0;gap:11px;font-size:14.5px}
+.cu .irow a,.cu .irow span{overflow-wrap:anywhere}
+.cu .map{position:relative;min-height:300px}
+.cu .map iframe{position:absolute;inset:0;width:100%;height:100%;min-height:0}
 .form{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:32px;box-shadow:0 18px 40px -26px rgba(0,60,110,.45)}
 .form .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .field{margin-bottom:16px}
@@ -469,10 +500,11 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;back
 
 /* ---------- Responsive ---------- */
 @media(max-width:1180px){
+  .cu-row{grid-template-columns:1fr;row-gap:28px}
   .mainnav{display:none}
   .grid-f{grid-template-columns:repeat(3,1fr)}
   .pgrid,.cgrid{grid-template-columns:repeat(3,1fr)}
-  .bgrid{grid-template-columns:repeat(4,1fr)}
+  .bgrid{grid-template-columns:repeat(6,1fr)}
 }
 @media(max-width:900px){
   .svc-card .ico{top:31%;width:50%}
@@ -486,6 +518,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;back
   .ti-row{grid-template-columns:1fr 1fr;grid-auto-rows:auto;justify-content:stretch}
   .ti-row .ti-txt{grid-column:1/-1;grid-row:1;margin-left:0}.ti-row .ph1{grid-column:1;grid-row:2}.ti-row .ph2{grid-column:2;grid-row:2}
   .ti-ph{aspect-ratio:4/3}
+  .ti-row .ti-txt{justify-self:stretch;max-width:none}
   .ti-row.der{grid-template-columns:1fr 1fr}
   .ti-row.der .ti-txt{grid-column:1/-1;margin:0}
   .ti-row.der .ti-ph{grid-column:1;grid-row:2;aspect-ratio:3/4}
@@ -506,9 +539,11 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;back
   .pgrid,.cgrid{grid-template-columns:repeat(2,1fr);gap:14px}
   .grid-f,.grid-f.g3{grid-template-columns:repeat(2,1fr);gap:12px}
   .grid-f.g2{grid-template-columns:1fr}
-  .bgrid{grid-template-columns:repeat(2,1fr)}
+  .bgrid{grid-template-columns:repeat(3,1fr)}
   .svgrid{grid-template-columns:1fr}
   .form .two{grid-template-columns:1fr}
+  .cu-boxes,.cu-u .cu-boxes{grid-template-columns:1fr}
+  .cu .side{grid-auto-rows:auto}
   .sec{padding:60px 0}
   .actions{justify-content:stretch}
   .actions .btn{flex:1}
@@ -815,28 +850,13 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;back
 </section>
 
 <!-- ===== Ubicación ===== -->
-<section class="sec soft" id="ubicacion">
-  <div class="wrap">
-    <div class="sec-head center rv"><span class="kicker">Ubicación y horarios</span><h2>Visitanos en Río Grande</h2></div>
-    <div class="loc">
-      <div class="infocard rv">
-        <h3>Rectificaciones y Repuestos Barria</h3>
-        <div class="irow"><svg class="ic"><use href="#ic-pin"/></svg><div><b>Dirección</b><span>25 de Mayo 2436, Río Grande<br>Tierra del Fuego, Argentina (9420)</span></div></div>
-        <div class="irow"><svg class="ic"><use href="#ic-phone"/></svg><div><b>Teléfono</b><a href="tel:+542964300866">02964 300866</a></div></div>
-        <div class="irow"><svg class="ic"><use href="#ic-mail"/></svg><div><b>Email</b><a href="mailto:rectificaciones.barria@gmail.com">rectificaciones.barria@gmail.com</a></div></div>
-        <div class="irow"><svg class="ic"><use href="#ic-clock"/></svg><div><b>Horario de atención</b><span id="hours-txt">Consultá nuestros horarios por teléfono o WhatsApp.</span><br><span class="tag" id="open-tag">Horarios a confirmar</span></div></div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px"><a class="btn btn-red btn-sm" id="route" target="_blank" rel="noopener">Cómo llegar</a><a class="btn btn-line btn-sm" data-wa target="_blank" rel="noopener">WhatsApp</a></div>
-      </div>
-      <div class="map rv"><iframe title="Mapa de Rectificaciones y Repuestos Barria en Río Grande" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=25%20de%20Mayo%202436%2C%20R%C3%ADo%20Grande%2C%20Tierra%20del%20Fuego%2C%20Argentina&output=embed"></iframe></div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== Contacto ===== -->
-<section class="sec" id="contacto">
+<section class="sec soft cu" id="contacto">
   <div class="wrap">
-    <div class="sec-head center rv"><span class="kicker">Contacto</span><h2>Contanos qué necesitás</h2><p>Escribinos y te respondemos a la brevedad.</p></div>
-    <div class="cgrid2">
+    <div class="sec-head center rv"><span class="kicker">Contacto, ubicación y horarios</span><h2>Contanos qué necesitás</h2><p>Escribinos y te respondemos a la brevedad.</p></div>
+    <div class="cu-row">
+      <div class="cu-col">
+        <div class="cu-boxes">
       <form class="form rv" id="cform" novalidate>
         <div class="two">
           <div class="field"><label for="cf-name">Nombre *</label><input id="cf-name" autocomplete="name"><div class="msg">Ingresá tu nombre.</div></div>
@@ -850,9 +870,21 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;back
       <div class="side rv">
         <a class="chan wa" data-wa target="_blank" rel="noopener"><div class="ci2"><svg class="ic fill"><use href="#ic-wa"/></svg></div><div><b>WhatsApp</b><span>Consultas y pedidos al instante</span></div></a>
         <a class="chan" href="tel:+542964300866"><div class="ci2"><svg class="ic"><use href="#ic-phone"/></svg></div><div><b>02964 300866</b><span>Llamanos</span></div></a>
-        <a class="chan" href="mailto:rectificaciones.barria@gmail.com"><div class="ci2"><svg class="ic"><use href="#ic-mail"/></svg></div><div><b>Email</b><span>rectificaciones.barria@gmail.com</span></div></a>
+        <a class="chan" href="mailto:rectificaciones.barria@gmail.com"><div class="ci2"><svg class="ic"><use href="#ic-mail"/></svg></div><div><b>Email</b><span>rectificaciones.barria<wbr>@gmail.com</span></div></a>
         <a class="chan fb" href="https://www.facebook.com/RectificacionesYRepuestosBarria" target="_blank" rel="noopener"><div class="ci2"><svg class="ic fill"><use href="#ic-fb"/></svg></div><div><b>Facebook</b><span>Seguinos y mirá nuestras novedades</span></div></a>
         <a class="chan ig hidden" data-ig target="_blank" rel="noopener"><div class="ci2"><svg class="ic fill"><use href="#ic-ig"/></svg></div><div><b>Instagram</b><span>Nuestros trabajos en imágenes</span></div></a>
+      </div>
+        </div>
+      </div>
+      <div class="cu-col cu-u" id="ubicacion">
+        <div class="cu-boxes">
+      <div class="map rv"><iframe title="Mapa de Rectificaciones y Repuestos Barria en Río Grande" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=25%20de%20Mayo%202436%2C%20R%C3%ADo%20Grande%2C%20Tierra%20del%20Fuego%2C%20Argentina&output=embed"></iframe></div>
+      <div class="infocard rv">
+        <h3>Rectificaciones y Repuestos Barria</h3>
+        <div class="irow"><svg class="ic"><use href="#ic-pin"/></svg><div><b>Dirección</b><span>25 de Mayo 2436, Río Grande<br>Tierra del Fuego, Argentina (9420)</span></div></div>
+        <div class="irow"><svg class="ic"><use href="#ic-clock"/></svg><div><b>Horario de atención</b><span id="hours-txt">Lunes a viernes: 8 a 12 h y 14 a 19 h<br>Sábados: 8 a 13 h<br>Domingos: cerrado</span><br><span class="tag" id="open-tag">Horarios a confirmar</span></div></div>
+      </div>
+        </div>
       </div>
     </div>
   </div>
@@ -889,7 +921,12 @@ const CONFIG = {
   mapQuery: '25 de Mayo 2436, Río Grande, Tierra del Fuego, Argentina',
   // Horarios: null = "a confirmar". Ejemplo:
   // hours: [{days:[1,2,3,4,5], from:'08:30', to:'18:00', label:'Lunes a Viernes: 8:30 a 18:00'}, {days:[6], from:'09:00', to:'13:00', label:'Sábados: 9:00 a 13:00'}]
-  hours: null
+  hours: [
+    {days:[1,2,3,4,5], from:'08:00', to:'12:00', label:'Lunes a viernes: 8 a 12 h y 14 a 19 h'},
+    {days:[1,2,3,4,5], from:'14:00', to:'19:00', label:''},
+    {days:[6], from:'08:00', to:'13:00', label:'Sábados: 8 a 13 h'},
+    {days:[], from:'00:00', to:'00:00', label:'Domingos: cerrado'}
+  ]
 };
 
 /* Consulta por patente: dejala en enabled:false hasta tener una API.
@@ -1046,12 +1083,12 @@ const waURL=msg=>'https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(ms
 /* ---------- Enlaces de contacto ---------- */
 $$('[data-wa]').forEach(a=>a.href=waURL('Hola! Quisiera hacer una consulta.'));
 if(CONFIG.instagram){$$('[data-ig]').forEach(a=>{a.href=CONFIG.instagram;a.classList.remove('hidden')})}
-$('#route').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(CONFIG.mapQuery);
+if($('#route')) $('#route').href='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(CONFIG.mapQuery);
 
 /* ---------- Horarios ---------- */
 (function(){
   if(!CONFIG.hours) return;
-  $('#hours-txt').innerHTML=CONFIG.hours.map(h=>esc(h.label)).join('<br>');
+  $('#hours-txt').innerHTML=CONFIG.hours.filter(h=>h.label).map(h=>esc(h.label)).join('<br>');
   const tag=$('#open-tag');
   try{
     const p=new Intl.DateTimeFormat('en-US',{timeZone:'America/Argentina/Ushuaia',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
