@@ -70,9 +70,22 @@ section{scroll-margin-top:96px}
 .topbar .wrap{display:flex;justify-content:space-between;align-items:center;height:32px;max-width:none;padding:0 28px}
 #site-header.scrolled .topbar{height:0;opacity:0;border-color:transparent}
 .topbar a{color:inherit;display:inline-flex;align-items:center;gap:6px}
-.tb-right{display:flex;align-items:center;gap:14px}
-.tb-right a{opacity:.92;transition:opacity .2s,transform .2s}
-.tb-right a:hover{opacity:1;transform:translateY(-1px)}
+.tb-right{display:flex;align-items:center;gap:14px;height:100%}
+/* Redes, teléfono y mail como Taranto: celdas de 40px; al pasar el cursor se ensanchan, toman el color de cada red y muestran su nombre */
+.tsoc{display:flex;height:100%}
+.tsoc a{height:100%;gap:0;overflow:hidden;border-left:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.9);font-size:13px;font-weight:700;white-space:nowrap;transition:color .3s ease-in-out,background-color .3s ease-in-out}
+.tsoc a:first-child{border-left:0}
+.tsoc .ts-icon{display:grid;place-items:center;width:40px;height:100%;flex:none}
+.tsoc .ts-icon .ic{width:15px;height:15px}
+.tsoc .ts-text{max-width:0;padding-right:0;transition:max-width .3s ease-in-out,padding-right .3s ease-in-out}
+.tsoc a:hover,.tsoc a:focus-visible{color:#fff;text-shadow:1px 1px 1px rgba(0,0,0,.2);text-decoration:none}
+.tsoc a:hover .ts-text,.tsoc a:focus-visible .ts-text{max-width:260px;padding-right:25px}
+.tsoc .si-call:hover,.tsoc .si-call:focus-visible{background:#444}
+.tsoc .si-email:hover,.tsoc .si-email:focus-visible{background:#6567a5}
+.tsoc .si-facebook:hover,.tsoc .si-facebook:focus-visible{background:#3b5998}
+.tsoc .si-instagram:hover,.tsoc .si-instagram:focus-visible{background:#3f729b}
+.tsoc .si-whatsapp:hover,.tsoc .si-whatsapp:focus-visible{background:#25d366}
+@media (hover:none){.tsoc a:hover .ts-text{max-width:0;padding-right:0}}
 .navbar{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:88px;max-width:none;padding:0 28px;transition:height .25s}
 #site-header.scrolled .navbar{height:72px}
 .nav-l,.nav-r{display:flex;align-items:center;gap:6px}
@@ -94,12 +107,19 @@ li:hover>.dd,li:focus-within>.dd{opacity:1;visibility:visible;transform:none}
 .dd a{display:block;padding:10px 14px;border-radius:6px;color:var(--link);font-weight:700;font-size:19px;transition:background-color .15s,color .15s,padding-left .15s}
 .dd a:hover,.dd a:focus-visible{background:var(--soft);color:var(--red);padding-left:20px}
 /* Logo circular */
-.brand{display:block;justify-self:center;align-self:center;position:relative;top:-18px;width:106px;height:106px;margin:0;border-radius:50%;background:#fff;
+.brand{display:block;justify-self:center;align-self:center;position:relative;top:-18px;width:95.4px;height:95.4px;margin:0;border-radius:50%;background:#fff;
   box-shadow:0 0 0 3px #fff,0 0 0 5px var(--red),0 16px 34px -12px rgba(0,0,0,.6);
   transition:width .3s,height .3s,margin .3s,box-shadow .3s,transform .3s,top .3s}
-.brand img{display:block;width:100%;height:100%;border-radius:50%;object-fit:contain}
-.brand:hover{transform:scale(1.04)}
-#site-header.scrolled .brand{top:0;width:68px;height:68px;margin-top:0;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--red),0 6px 16px -6px rgba(0,40,80,.5)}
+.brand img{display:block;width:100%;height:100%;border-radius:50%;object-fit:contain;backface-visibility:hidden;transform:translateZ(1px)}
+/* Giro 3D de todo el logo cada 6 s (giro de 1,5 s, hacia la izquierda); el dorso es el disco blanco liso con el borde rojo */
+.brand{transform-style:preserve-3d;animation:rbGiro 6s linear infinite}
+/* Relieve solo en el dorso: frente plano; detrás, un canto de 4px y un disco blanco apenas abombado con el borde rojo */
+.brand::after{content:"";position:absolute;inset:0;border-radius:50%;pointer-events:none;transform:translateZ(-4px);background:radial-gradient(circle at 62% 30%,#fff 0,#fff 45%,#f3f3f3 78%,#e9e9e9 100%);box-shadow:0 0 0 3px #f4f4f4,0 0 0 5px #c42620,inset 0 0 6px rgba(0,0,0,.08)}
+#site-header.scrolled .brand::after{box-shadow:0 0 0 2px #f4f4f4,0 0 0 3px #c42620,inset 0 0 4px rgba(0,0,0,.08);transform:translateZ(-3px)}
+@keyframes rbGiro{0%,75%{transform:perspective(380px) rotateY(0);animation-timing-function:cubic-bezier(.45,0,.55,1)}100%{transform:perspective(380px) rotateY(-360deg)}}
+@media (prefers-reduced-motion:reduce){.brand{animation:none}}
+.brand:hover{scale:1.04}
+#site-header.scrolled .brand{top:0;width:61.2px;height:61.2px;margin-top:0;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--red),0 6px 16px -6px rgba(0,40,80,.5)}
 .catbtn{display:flex;align-items:center;gap:10px;background:#fff;color:#333;border-radius:var(--r);padding:7px 14px;line-height:1.1;box-shadow:0 6px 18px -8px rgba(0,0,0,.5);transition:transform .2s,box-shadow .2s}
 .catbtn:hover{transform:translateY(-2px);box-shadow:0 10px 22px -8px rgba(0,0,0,.55)}
 .catbtn .ic{width:20px;height:20px;color:var(--red)}
@@ -152,7 +172,7 @@ li:hover>.dd,li:focus-within>.dd{opacity:1;visibility:visible;transform:none}
 .hero .slide h2,.hero .slide p{text-shadow:0 2px 18px rgba(0,0,0,.55)}
 /* Borde inferior de la franja azul: se difumina sobre el video */
 #site-header.transparent{background:transparent}
-#site-header.transparent .brand{margin:-7px 0}
+#site-header.transparent .brand{margin:-1.7px 0}
 #site-header.transparent::after{content:"";position:absolute;left:0;right:0;top:0;height:150%;z-index:-1;pointer-events:none;background:linear-gradient(rgba(0,0,0,.4) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.2) 65%,rgba(0,0,0,.1) 80%,rgba(0,0,0,0) 100%)}
 @media(max-width:900px){
   .hero-media{width:100%;-webkit-mask-image:none;mask-image:none}
@@ -480,9 +500,9 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;back
   .tb-home span{display:none}
   .catbtn span{display:none}
   .catbtn{padding:9px}
-  .brand{width:84px;height:84px}
-  #site-header.transparent .brand{margin:-5.5px 0}
-  #site-header.scrolled .brand{width:59px;height:59px}
+  .brand{width:75.6px;height:75.6px}
+  #site-header.transparent .brand{margin:-1.3px 0}
+  #site-header.scrolled .brand{width:53.1px;height:53.1px}
   .pgrid,.cgrid{grid-template-columns:repeat(2,1fr);gap:14px}
   .grid-f,.grid-f.g3{grid-template-columns:repeat(2,1fr);gap:12px}
   .grid-f.g2{grid-template-columns:1fr}
@@ -559,9 +579,13 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;back
   <div class="topbar"><div class="wrap">
     <a class="tb-home" href="#inicio"><svg class="ic"><use href="#ic-pin"/></svg><span>Río Grande · Tierra del Fuego</span></a>
     <div class="tb-right"><span>Síguenos</span>
-      <a href="https://www.facebook.com/RectificacionesYRepuestosBarria" target="_blank" rel="noopener" aria-label="Facebook"><svg class="ic fill"><use href="#ic-fb"/></svg></a>
-      <a data-ig target="_blank" rel="noopener" aria-label="Instagram" class="hidden"><svg class="ic fill"><use href="#ic-ig"/></svg></a>
-      <a data-wa target="_blank" rel="noopener" aria-label="WhatsApp"><svg class="ic fill"><use href="#ic-wa"/></svg></a>
+      <div class="tsoc">
+      <a class="si-call" href="tel:+542964300866" aria-label="Teléfono"><span class="ts-icon"><svg class="ic"><use href="#ic-phone"/></svg></span><span class="ts-text">02964 300866</span></a>
+      <a class="si-email" href="mailto:rectificaciones.barria@gmail.com" aria-label="Email"><span class="ts-icon"><svg class="ic"><use href="#ic-mail"/></svg></span><span class="ts-text">rectificaciones.barria@gmail.com</span></a>
+      <a class="si-facebook" href="https://www.facebook.com/RectificacionesYRepuestosBarria" target="_blank" rel="noopener" aria-label="Facebook"><span class="ts-icon"><svg class="ic fill"><use href="#ic-fb"/></svg></span><span class="ts-text">Facebook</span></a>
+      <a class="si-instagram hidden" data-ig target="_blank" rel="noopener" aria-label="Instagram"><span class="ts-icon"><svg class="ic fill"><use href="#ic-ig"/></svg></span><span class="ts-text">Instagram</span></a>
+      <a class="si-whatsapp" data-wa target="_blank" rel="noopener" aria-label="WhatsApp"><span class="ts-icon"><svg class="ic fill"><use href="#ic-wa"/></svg></span><span class="ts-text">WhatsApp</span></a>
+      </div>
     </div>
   </div></div>
   <div class="navbar wrap">
