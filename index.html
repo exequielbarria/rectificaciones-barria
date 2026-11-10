@@ -180,6 +180,13 @@ li:hover>.dd,li:focus-within>.dd{opacity:1;visibility:visible;transform:none}
   .hero-video{object-position:54% 50%}
   .hero::after{background:linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.5) 55%,rgba(0,0,0,.2) 100%)}}
 .hero .wrap{position:relative;z-index:2}
+/* Portada 15% más baja: se recorta solo desde abajo; el video y los textos de arriba quedan donde estaban */
+@media(min-width:901px){
+  .hero{min-height:max(578px,85vh);align-items:flex-start;padding-top:calc(max(680px,100vh)/2 - 218.5px);padding-bottom:0}
+  .hero-media{bottom:auto;height:max(680px,100vh)}
+  .hero-media::after{display:none}
+  .hero::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;background:linear-gradient(0deg,#000 0%,rgba(0,0,0,.55) 9%,rgba(0,0,0,0) 26%)}
+}
 .slides{display:grid;max-width:720px}
 .slide{grid-area:1/1;opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s;pointer-events:none}
 .slide.on{opacity:1;transform:none;pointer-events:auto}
@@ -300,6 +307,9 @@ li:hover>.dd,li:focus-within>.dd{opacity:1;visibility:visible;transform:none}
              linear-gradient(90deg,rgba(11,11,11,.7) 0%,rgba(11,11,11,0) 22%,rgba(11,11,11,0) 78%,rgba(11,11,11,.7) 100%)}
 #servicios .sec-head h2{color:#fff}
 #servicios .sec-head p{color:#a9a9a9}
+/* Servicios comprimido un 20% en escritorio */
+#servicios .btn{font-size:16px}
+@media(min-width:901px){#servicios .btn{font-size:16.5px}#servicios{padding:67px 0}#servicios>.wrap{zoom:.8}#servicios::before{height:min(656px,100%)}}
 /* Carrusel de servicios (coverflow B/N) */
 .svc-car{position:relative;--cw:min(480px,calc(100vw - 48px));max-width:1240px;margin:0 auto}
 .svc-stage{position:relative;display:grid;justify-items:center;padding:14px 0 22px;touch-action:pan-y;user-select:none}
@@ -423,10 +433,10 @@ li:hover>.dd,li:focus-within>.dd{opacity:1;visibility:visible;transform:none}
 .cgrid2{display:grid;grid-template-columns:1.1fr .9fr;gap:36px}
 /* Contacto y Ubicación en una sola fila: [formulario][redes] | [datos][mapa], recuadros compactos (-15%) */
 .cu .wrap{max-width:1440px}
-.cu-row{display:grid;grid-template-columns:1fr 1fr;column-gap:28px;align-items:stretch}
+.cu-row{display:grid;grid-template-columns:735fr 614fr;column-gap:28px;align-items:stretch}
 .cu-col{display:grid;min-width:0}
 .cu .sec-head{margin:0 auto 36px}
-.cu-boxes{display:grid;grid-template-columns:1.6fr 1fr;gap:16px;align-items:stretch;min-width:0}
+.cu-boxes{display:grid;grid-template-columns:466fr 253fr;gap:16px;align-items:stretch;min-width:0}
 .cu-u .cu-boxes{grid-template-columns:1.25fr 1fr}
 .cu .form{padding:22px}
 .cu .form .two{grid-template-columns:1fr;gap:0}
@@ -452,7 +462,7 @@ li:hover>.dd,li:focus-within>.dd{opacity:1;visibility:visible;transform:none}
 .form{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:32px;box-shadow:0 18px 40px -26px rgba(0,60,110,.45)}
 .form .two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .field{margin-bottom:16px}
-.field label{display:block;font-weight:800;color:var(--navy);margin-bottom:6px;font-size:14px}
+.field label{display:block;font-weight:800;color:var(--navy);margin-bottom:6px;font-size:16px}
 .field input,.field textarea{width:100%;border:2px solid var(--line);border-radius:8px;padding:12px 14px;font:500 16px var(--font);color:var(--ink);transition:border-color .2s,box-shadow .2s;background:#fff}
 .field textarea{min-height:130px;resize:vertical}
 .field input:focus,.field textarea:focus{outline:none;border-color:var(--blue-l);box-shadow:0 0 0 4px rgba(53,168,218,.2)}
@@ -759,7 +769,7 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;back
 <!-- ===== Servicios ===== -->
 <section class="sec soft" id="servicios">
   <div class="wrap">
-    <div class="sec-head center rv"><span class="kicker">Servicios</span><h2>Rectificación y reconstrucción integral de motores</h2><p>Servicios de calidad garantizada, con maquinaria sofisticada y controles de calidad en cada trabajo.</p></div>
+    <div class="sec-head center rv"><span class="kicker">Servicios</span><h2>Rectificación y reconstrucción integral de motores</h2></div>
     <div class="svc-car" id="svc-car" role="region" aria-roledescription="carrusel" aria-label="Servicios">
       <div class="svc-stage" id="svc-stage">
       <article class="svc-card" data-i="0" aria-roledescription="servicio" aria-label="Reconstrucción integral de motores">
@@ -845,7 +855,6 @@ footer::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;back
   <div class="wrap">
     <div class="sec-head center rv"><span class="kicker">Marcas</span><h2>Trabajamos con las marcas líderes del rectificado</h2><p>Pasá el mouse por cada marca y hacé clic para ver sus productos.</p></div>
     <div class="bgrid" id="bgrid"></div>
-    <p class="bnote">Las marcas y logotipos pertenecen a sus respectivos titulares.</p>
   </div>
 </section>
 
